@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+import FindUserByID from './cau3/FindUserByID'
 function App() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
@@ -21,7 +21,7 @@ function App() {
         console.log(data);
         setData(data);
       } catch (err) {
-        setError[err.message]
+        setError(err.message)
       } finally {
         setTimeout(() => { setLoading(false) }, 1000)
       }
@@ -33,7 +33,12 @@ function App() {
 
 
   return (
-    <>{
+    <>
+    <FindUserByID></FindUserByID>
+
+
+    <br /><br /><br /><br /><br />
+    {
       loading ? (<p>Loading...</p>) : (error === null ? (data.map((item) => {
         return <div key={item.id}>
           <p>{item.name}</p>
