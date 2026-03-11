@@ -5,30 +5,45 @@ import './App.css'
 
 function App() {
   const [data, setData] = useState([])
-  
-
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null);
   var url = "https://jsonplaceholder.typicode.com/users";
-  useEffect(()=>{
+
+
+  useEffect(() => {
     async function fetchAPI() {
-      var res = await fetch(url)
-      var data = await res.json()
-      console.log(data);
-      setData(data);
+      try {
+        var res = await fetch(url)
+        if (!res.ok) {
+          throw new Error("Error 404...")
+        }
+        var data = await res.json()
+        console.log(data);
+        setData(data);
+      } catch (err) {
+        setError[err.message]
+      } finally {
+        setTimeout(() => { setLoading(false) }, 1000)
+      }
     }
 
-    fetchAPI()  
-  },[])
-  
+    fetchAPI()
+  }, [])
+
+
+
   return (
-    <>
-      {
-      data.map((item)=>{
+    <>{
+      loading ? (<p>Loading...</p>) : (error === null ? (data.map((item) => {
         return <div key={item.id}>
           <p>{item.name}</p>
-          <p>{item.email}</p> 
+          <p>{item.email}</p>
         </div>
-      })
-      }
+      })) : (<p>Error...</p>)
+      )
+
+
+    }
     </>
   )
 }
