@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 export default function SearchPost() {
     const [data, setData] = useState([])
     const [displayData, setDisplayData] = useState([])
-    const[title, setTitle] = useState('')
+    const [title, setTitle] = useState('')
     const url = "https://jsonplaceholder.typicode.com/posts";
 
     useEffect(() => {
@@ -13,18 +13,22 @@ export default function SearchPost() {
                 setData(duLieuJson);
                 setDisplayData(duLieuJson)
                 console.log(duLieuJson)
-            } catch(err) {
+            } catch (err) {
                 console.error(err);
-                
+
             } finally {
-                
+
             }
-            
+
 
         }
         fetchPost()
     }
         , []);
+    
+    
+    
+    
     useEffect(() => {
         if (title.trim() === "") {
             setDisplayData(data)
@@ -33,7 +37,7 @@ export default function SearchPost() {
             setDisplayData(filtered);
         }
 
-    },[title,data])
+    }, [title, data])
     return (<>
 
         <input type="text" placeholder='Title' value={title} onChange={e => {
@@ -41,7 +45,7 @@ export default function SearchPost() {
         }} />
         {displayData.length === 0 ? (<p>Không có post nào</p>) : (displayData.map((item) => (
             <div key={item.id}>
-                <p>{ item.title}</p>
+                <p>{item.title}</p>
             </div>
         )
         ))}
