@@ -3,37 +3,40 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import FindUserByID from './cau3/FindUserByID'
+import SearchPost from './cau4/SearchPost' 
 function App() {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null);
-  var url = "https://jsonplaceholder.typicode.com/users";
+  // const [data, setData] = useState([])
+  // const [loading, setLoading] = useState(true)
+  // const [error, setError] = useState(null);
+  // var url = "https://jsonplaceholder.typicode.com/users";
 
 
-  useEffect(() => {
-    async function fetchAPI() {
-      try {
-        var res = await fetch(url)
-        if (!res.ok) {
-          throw new Error("Error 404...")
-        }
-        var data = await res.json()
-        console.log(data);
-        setData(data);
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setTimeout(() => { setLoading(false) }, 1000)
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchAPI() {
+  //     try {
+  //       var res = await fetch(url)
+  //       if (!res.ok) {
+  //         throw new Error("Error 404...")
+  //       }
+  //       var data = await res.json()
+  //       console.log(data);
+  //       setData(data);
+  //     } catch (err) {
+  //       setError(err.message)
+  //     } finally {
+  //       setTimeout(() => { setLoading(false) }, 1000)
+  //     }
+  //   }
 
-    fetchAPI()
-  }, [])
+  //   fetchAPI()
+  // }, [])
 
 
 
   return (
     <>
+      <SearchPost></SearchPost>
+     {/* <br /><br /><br /><br /><br /> 
     <FindUserByID></FindUserByID>
 
 
@@ -48,7 +51,7 @@ function App() {
       )
 
 
-    }
+    } */}
     </>
   )
 }
